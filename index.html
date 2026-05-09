@@ -856,7 +856,23 @@ function submitCap(e) {
   if (!ok) return;
   S.name = nEl.value.trim(); S.phone = pEl.value;
   trackEv('lead_generated');
+  sendLead(S.name, S.phone);
   show('s-quiz'); renderQ(0);
+}
+
+function sendLead(name, phone) {
+  const waLink = 'https://wa.me/55' + phone.replace(/\D/g,'');
+  fetch('https://api.web3forms.com/submit', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+      access_key: 'b3c291b7-20a0-4657-aa66-b9e64284c361',
+      subject: '🔥 Novo lead no quiz: ' + name,
+      from_name: 'Quiz Hadar',
+      cc: 'alexandre.hadar@gmail.com',
+      message: 'Novo lead captado pelo quiz!\n\nNome: ' + name + '\nWhatsApp: ' + phone + '\n\nResponder direto: ' + waLink
+    })
+  }).catch(function(){});
 }
 
 /* ── DIAGNÓSTICO ── */
