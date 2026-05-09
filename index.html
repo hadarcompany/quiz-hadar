@@ -9,9 +9,11 @@
   <!-- Fontes não-bloqueantes -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Geist:wght@400;600;700&family=Geist+Mono:wght@400;500&display=swap" />
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@400;600;700&family=Geist+Mono:wght@400;500&display=swap" media="print" onload="this.media='all'" />
-  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@400;600;700&family=Geist+Mono:wght@400;500&display=swap" /></noscript>
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Geist:wght@400;600;700;800&family=Geist+Mono:wght@400;500&display=swap" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@400;600;700;800&family=Geist+Mono:wght@400;500&display=swap" media="print" onload="this.media='all'" />
+  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@400;600;700;800&family=Geist+Mono:wght@400;500&display=swap" /></noscript>
+
+  <link rel="preload" as="image" href="LOGO.png" fetchpriority="high" />
 
   <!-- META PIXEL -->
   <script>!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');fbq('init','1441986497241554');fbq('track','PageView');</script>
@@ -404,7 +406,7 @@
 
   <!-- 1ª dobra: hero -->
   <section class="hero">
-    <video class="hero-bg-vid" autoplay muted loop playsinline>
+    <video class="hero-bg-vid" muted loop playsinline preload="none" id="hero-bg-vid">
       <source src="assets/Videos%20clientes/video%20bg.mp4" type="video/mp4">
     </video>
     <div class="xh" aria-hidden="true"><div class="xh-box"></div></div>
@@ -414,6 +416,7 @@
       <div class="hero-logo">
         <img
           src="LOGO.png" alt="Hadar Company"
+          width="200" height="44" fetchpriority="high" decoding="async"
           onerror="this.style.display='none';document.querySelector('.hero-logo-fb').style.display='block'"
         />
         <span class="hero-logo-fb" style="display:none">HADAR</span>
@@ -816,12 +819,18 @@ function buildMarquee(id) {
 }
 
 /* ── INIT DIFERIDO ── */
-setTimeout(() => {
+(window.requestIdleCallback || (cb => setTimeout(cb, 1)))(() => {
   buildCarousel('vc');
   buildCarousel('vr');
   buildMarquee('mtrack');
   buildMarquee('mtrack2');
-}, 0);
+});
+
+/* hero bg video — inicia após tudo carregado para não bloquear LCP */
+window.addEventListener('load', () => {
+  const v = document.getElementById('hero-bg-vid');
+  if (v) { v.load(); v.play().catch(() => {}); }
+}, { once: true });
 
 /* ── TRACKING ── */
 function trackEv(n, p) {
