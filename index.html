@@ -554,27 +554,6 @@
     <div class="pain-list" id="pain-list" role="list"></div>
   </section>
 
-  <section class="cases-sec vcaro-sec" aria-label="Cases de clientes">
-    <div class="cases-head">
-      <span class="sec-num">// 02 — portfólio</span>
-      <h3 class="sec-ttl">Empresas do Alto Paranaíba que já mudaram</h3>
-    </div>
-    <div class="vcaro-viewport" id="vr-vp">
-      <div class="vcaro-track" id="vr-track"></div>
-    </div>
-    <div class="vcaro-nav">
-      <button class="vcaro-btn" onclick="vcMove(-1,'vr')" aria-label="Anterior">←</button>
-      <div class="vcaro-dots" id="vr-dots"></div>
-      <button class="vcaro-btn" onclick="vcMove(1,'vr')" aria-label="Próximo">→</button>
-    </div>
-  </section>
-
-  <div class="logos-sec" aria-label="Mais parceiros">
-    <div class="logos-head"><p class="logos-lbl">// mais empresas que confiam na hadar</p></div>
-    <div class="logos-div"></div>
-    <div class="marquee"><div class="mtrack" id="mtrack2"></div></div>
-  </div>
-
   <section class="cta-final" aria-label="Próximo passo">
     <div class="cta-in">
       <p class="eyebrow" style="justify-content:center;margin-bottom:20px">// próximo passo</p>
@@ -821,9 +800,7 @@ function buildMarquee(id) {
 /* ── INIT DIFERIDO ── */
 (window.requestIdleCallback || (cb => setTimeout(cb, 1)))(() => {
   buildCarousel('vc');
-  buildCarousel('vr');
   buildMarquee('mtrack');
-  buildMarquee('mtrack2');
 });
 
 /* hero bg video — inicia após tudo carregado para não bloquear LCP */
