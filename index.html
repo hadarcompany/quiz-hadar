@@ -400,7 +400,7 @@
   <!-- 1ª dobra: hero -->
   <section class="hero">
     <video class="hero-bg-vid" autoplay muted loop playsinline>
-      <source src="assets/Videos%20clientes/video%20thumb.mp4" type="video/mp4">
+      <source src="assets/Videos%20clientes/video%20bg.mp4" type="video/mp4">
     </video>
     <div class="xh" aria-hidden="true"><div class="xh-box"></div></div>
     <div class="hero-in">
@@ -717,7 +717,7 @@ function bumpTimer(prefix) {
 function vcApplyPos(prefix, pos, animate) {
   const trackEl = document.getElementById(`${prefix}-track`);
   const vpEl    = document.getElementById(`${prefix}-vp`);
-  if (!trackEl) return;
+  if (!trackEl || !vpEl.offsetWidth) return;
   const st    = VC[prefix];
   const n     = st.total;
   const cards = trackEl.querySelectorAll('.vcard');
@@ -742,6 +742,8 @@ function vcApplyPos(prefix, pos, animate) {
     st.activeVid = null;
   }
 
+  clearTimeout(st._jumpTimer); st._jumpTimer = null;
+
   if (!animate) {
     trackEl.style.transition = 'none';
     trackEl.style.transform = `translateX(${-Math.max(0,offset)}px)`;
@@ -751,7 +753,10 @@ function vcApplyPos(prefix, pos, animate) {
     trackEl.style.transform = `translateX(${-Math.max(0,offset)}px)`;
     if (pos < CLONE_N || pos >= CLONE_N + n) {
       const jump = pos < CLONE_N ? pos + n : pos - n;
-      trackEl.addEventListener('transitionend', () => vcApplyPos(prefix, jump, false), { once: true });
+      st._jumpTimer = setTimeout(() => {
+        st._jumpTimer = null;
+        vcApplyPos(prefix, jump, false);
+      }, 460);
     }
   }
 }
