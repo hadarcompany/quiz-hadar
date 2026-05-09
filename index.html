@@ -60,7 +60,7 @@
     /* ── SCREENS ── */
     .screen{display:none}
     .screen.active{display:block;animation:fadeUp .35s ease forwards}
-    #s-result.active{display:flex}
+    #s-capture.active,#s-result.active{display:flex}
     @keyframes fadeUp{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:translateY(0)}}
 
     /* ── FLOATING WHATSAPP ── */
@@ -337,6 +337,24 @@
     .seal{font-family:'Geist Mono',monospace;font-size:10px;color:var(--off);text-transform:uppercase;letter-spacing:.05em;display:flex;align-items:center;gap:5px}
     .seal::before{content:'';width:4px;height:4px;border-radius:50%;background:rgba(255,255,255,.15);flex-shrink:0}
 
+    /* ── CAPTURA ── */
+    #s-capture{min-height:100svh;display:flex;align-items:center;justify-content:center;background:var(--bg);padding:40px 24px}
+    .cap-wrap{max-width:420px;width:100%;text-align:center}
+    .cap-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(255,106,26,.1);border:1px solid rgba(255,106,26,.25);border-radius:99px;padding:5px 14px;font-family:'Geist Mono',monospace;font-size:10px;color:var(--or);text-transform:uppercase;letter-spacing:.06em;margin-bottom:16px}
+    .cap-h2{font-size:clamp(22px,3.5vw,30px);font-weight:700;letter-spacing:-.03em;line-height:1.1;color:var(--text);margin-bottom:8px}
+    .cap-lead{font-size:14px;color:var(--muted);margin-bottom:28px;line-height:1.5}
+    .field{text-align:left;margin-bottom:14px}
+    .field label{display:block;font-family:'Geist Mono',monospace;font-size:10px;color:var(--aux);text-transform:uppercase;letter-spacing:.08em;margin-bottom:7px}
+    .field label span{color:var(--or)}
+    .field input{width:100%;background:var(--surface);border:1px solid var(--border2);border-radius:var(--r);padding:13px 16px;font-size:15px;color:var(--text);outline:none;transition:border-color var(--e)}
+    .field input:focus{border-color:rgba(255,106,26,.5)}
+    .field input.err{border-color:#D64545}
+    .ferr{font-size:11px;color:#D64545;margin-top:5px;display:none}
+    .ferr.show{display:block}
+    .btn-sub{width:100%;background:var(--or);color:#fff;font-family:inherit;font-size:15px;font-weight:600;padding:15px 24px;border-radius:var(--r);border:none;cursor:pointer;min-height:54px;letter-spacing:-.01em;box-shadow:var(--glow);transition:filter var(--e),transform var(--e);margin-top:6px}
+    .btn-sub:hover{filter:brightness(1.1);transform:translateY(-1px)}
+    .cap-priv{font-family:'Geist Mono',monospace;font-size:10px;color:var(--off);margin-top:14px;text-transform:uppercase;letter-spacing:.05em}
+
     /* ── RESPONSIVE ── */
     @media(max-width:600px){
       .hero{padding:64px 24px 72px;min-height:100svh}
@@ -455,6 +473,30 @@
 </main>
 
 
+<!-- ══════════ CAPTURA ══════════ -->
+<main id="s-capture" class="screen" aria-label="Seus dados">
+  <div class="cap-wrap">
+    <div class="cap-badge"><span class="dot" aria-hidden="true"></span> // etapa 1 de 2</div>
+    <h2 class="cap-h2">Antes de começar,<br>como podemos te chamar?</h2>
+    <p class="cap-lead">Seu diagnóstico será personalizado com base nas suas respostas.</p>
+    <form id="cap-form" onsubmit="submitCap(event)" novalidate>
+      <div class="field">
+        <label for="f-name"><span>//</span> seu nome</label>
+        <input type="text" id="f-name" placeholder="João Silva" autocomplete="name" required aria-required="true" />
+        <p class="ferr" id="err-name" role="alert">Insira seu nome.</p>
+      </div>
+      <div class="field">
+        <label for="f-phone"><span>//</span> whatsapp com ddd</label>
+        <input type="tel" id="f-phone" placeholder="(34) 99999-9999" autocomplete="tel" inputmode="numeric" required aria-required="true" />
+        <p class="ferr" id="err-phone" role="alert">Insira um WhatsApp válido com DDD.</p>
+      </div>
+      <button type="submit" class="btn-sub">Começar diagnóstico →</button>
+    </form>
+    <p class="cap-priv">// dados protegidos · sem spam</p>
+  </div>
+</main>
+
+
 <!-- ══════════ QUIZ ══════════ -->
 <main id="s-quiz" class="screen" aria-label="Diagnóstico">
   <div class="prog" role="progressbar" aria-valuemin="0" aria-valuemax="7" aria-valuenow="0" id="prog">
@@ -546,7 +588,7 @@ const QUESTIONS = [
 ];
 
 /* ── ESTADO ── */
-const S = { ans:{}, cur:0 };
+const S = { ans:{}, name:'', phone:'', cur:0 };
 
 /* ── THUMBNAILS ── */
 function loadThumbs(trackEl) {
@@ -744,7 +786,7 @@ function show(id) {
   window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
-function startQuiz() { trackEv('quiz_started'); show('s-quiz'); renderQ(0); }
+function startQuiz() { trackEv('quiz_started'); show('s-capture'); }
 
 /* ── QUIZ ── */
 function renderQ(i) {
@@ -792,6 +834,31 @@ function nextQ() {
 }
 function prevQ() { if (S.cur > 0) { renderQ(S.cur - 1); window.scrollTo({ top: 0, behavior: 'smooth' }); } }
 
+/* ── CAPTURA ── */
+document.getElementById('f-phone').addEventListener('input', e => {
+  let v = e.target.value.replace(/\D/g,'').slice(0,11);
+  if (v.length>6)      v = `(${v.slice(0,2)}) ${v.slice(2,7)}-${v.slice(7)}`;
+  else if (v.length>2) v = `(${v.slice(0,2)}) ${v.slice(2)}`;
+  else if (v.length>0) v = `(${v}`;
+  e.target.value = v;
+});
+
+function submitCap(e) {
+  e.preventDefault();
+  const nEl=document.getElementById('f-name'), pEl=document.getElementById('f-phone');
+  const eN=document.getElementById('err-name'), eP=document.getElementById('err-phone');
+  let ok = true;
+  if (nEl.value.trim().length < 2) { nEl.classList.add('err'); eN.classList.add('show'); ok=false; }
+  else { nEl.classList.remove('err'); eN.classList.remove('show'); }
+  const d = pEl.value.replace(/\D/g,'');
+  if (!/^[1-9]{2}9?\d{8}$/.test(d)) { pEl.classList.add('err'); eP.classList.add('show'); ok=false; }
+  else { pEl.classList.remove('err'); eP.classList.remove('show'); }
+  if (!ok) return;
+  S.name = nEl.value.trim(); S.phone = pEl.value;
+  trackEv('lead_generated');
+  show('s-quiz'); renderQ(0);
+}
+
 /* ── DIAGNÓSTICO ── */
 function getDiag() {
   const a=S.ans, p=[];
@@ -820,6 +887,7 @@ function getDiag() {
 }
 
 function buildResult() {
+  document.getElementById('res-h2').textContent = `Diagnóstico pronto, ${S.name.split(' ')[0]}.`;
   document.getElementById('pain-list').innerHTML = getDiag().map((t,i)=>
     `<div class="pain-card" role="listitem"><span class="pn">// 0${i+1}</span><p class="pt">${t}</p></div>`
   ).join('');
@@ -831,6 +899,8 @@ function waURL() {
   return 'https://wa.me/5534999386446?text='+encodeURIComponent(
 `Olá! Acabei de fazer o diagnóstico no site da Hadar.
 
+👤 Nome: ${S.name}
+📱 WhatsApp: ${S.phone}
 🏢 Papel: ${a[0]||'—'}
 ⏱️ Tempo de empresa: ${a[1]||'—'}
 💰 Faturamento: ${a[2]||'—'}
