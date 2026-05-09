@@ -1,0 +1,922 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Diagnóstico gratuito de marketing para empreendedores do Alto Paranaíba — Hadar Company" />
+  <title>Diagnóstico de Marketing // Hadar Company</title>
+
+  <!-- Fontes não-bloqueantes -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Geist:wght@400;600;700&family=Geist+Mono:wght@400;500&display=swap" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@400;600;700&family=Geist+Mono:wght@400;500&display=swap" media="print" onload="this.media='all'" />
+  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@400;600;700&family=Geist+Mono:wght@400;500&display=swap" /></noscript>
+
+  <!-- META PIXEL -->
+  <script>!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');fbq('init','1441986497241554');fbq('track','PageView');</script>
+  <noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=1441986497241554&ev=PageView&noscript=1"/></noscript>
+  <!-- GA4 — substitua G-XXXXXXXXXX
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+  <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-XXXXXXXXXX');</script>
+  -->
+
+  <style>
+    /* ── TOKENS ── */
+    :root{
+      --bg:#000000;
+      --bg2:#111111;
+      --surface:#161616;
+      --surface2:#1e1e1e;
+      --text:#FFFFFF;
+      --muted:rgba(255,255,255,.62);
+      --aux:rgba(255,255,255,.38);
+      --off:rgba(255,255,255,.22);
+      --border:rgba(255,255,255,.08);
+      --border2:rgba(255,255,255,.13);
+      --or:#FF6A1A;
+      --or-h:#FF8A4A;
+      --or-t:rgba(255,106,26,.1);
+      --wa:#25D366;
+      --glow:0 12px 40px -12px rgba(255,106,26,.32);
+      --r:12px;--rl:16px;--e:.2s ease
+    }
+
+    /* ── RESET ── */
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    html{scroll-behavior:smooth}
+    body{
+      font-family:'Geist',system-ui,-apple-system,sans-serif;
+      background:var(--bg);color:var(--text);
+      -webkit-font-smoothing:antialiased;line-height:1.6;
+      min-height:100vh
+    }
+    img{max-width:100%;display:block}
+    button,input{font-family:inherit}
+    ::placeholder{color:var(--aux)}
+
+    /* ── SCREENS ── */
+    .screen{display:none}
+    .screen.active{display:block;animation:fadeUp .35s ease forwards}
+    #s-capture.active{display:flex}
+    @keyframes fadeUp{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:translateY(0)}}
+
+    /* ── FLOATING WHATSAPP ── */
+    .wa-float{
+      position:fixed;bottom:24px;right:24px;z-index:300;
+      width:58px;height:58px;border-radius:50%;
+      background:var(--wa);
+      display:flex;align-items:center;justify-content:center;
+      box-shadow:0 4px 24px rgba(37,211,102,.45);
+      text-decoration:none;
+      transition:transform var(--e),box-shadow var(--e)
+    }
+    .wa-float:hover{transform:scale(1.1);box-shadow:0 6px 32px rgba(37,211,102,.6)}
+    .wa-float svg{width:28px;height:28px;fill:#fff}
+
+    /* ── PULSE ── */
+    .dot{width:8px;height:8px;border-radius:50%;background:var(--or);flex-shrink:0;box-shadow:0 0 8px 2px rgba(255,106,26,.55);animation:pulse 2s ease-in-out infinite}
+    @keyframes pulse{0%{box-shadow:0 0 8px 2px rgba(255,106,26,.55),0 0 0 0 rgba(255,106,26,.4)}70%{box-shadow:0 0 8px 2px rgba(255,106,26,.55),0 0 0 8px rgba(255,106,26,0)}100%{box-shadow:0 0 8px 2px rgba(255,106,26,.55),0 0 0 0 rgba(255,106,26,0)}}
+
+    /* ── HERO ── */
+    .hero{
+      padding:80px 80px 88px;text-align:center;
+      position:relative;overflow:hidden;
+      background:#000;
+      min-height:100svh;
+      display:flex;flex-direction:column;justify-content:center;align-items:center
+    }
+    .hero::before{
+      content:'';position:absolute;inset:0;
+      background:radial-gradient(ellipse 800px 600px at 50% 0%,rgba(255,106,26,.08),transparent 70%);
+      pointer-events:none
+    }
+    /* grid 2×2 decorativo */
+    .xh{position:absolute;top:36px;right:52px;width:22px;height:22px;pointer-events:none}
+    .xh::before,.xh::after{content:'';position:absolute;background:none}
+    .xh-box{
+      position:absolute;inset:auto;top:0;left:0;
+      width:8px;height:8px;border-radius:1.5px;
+      background:rgba(255,106,26,.4);
+      box-shadow:12px 0 0 rgba(255,106,26,.4),0 12px 0 rgba(255,106,26,.4),12px 12px 0 rgba(255,106,26,.4)
+    }
+
+    .hero-in{max-width:860px;width:100%;margin:0 auto;position:relative;z-index:1}
+
+    .hero-logo{margin-bottom:28px;display:flex;justify-content:center}
+    .hero-logo img{height:44px;width:auto;object-fit:contain}
+    .hero-logo-fb{font-size:16px;font-weight:700;letter-spacing:.12em;color:#fff;text-transform:uppercase}
+
+    .eyebrow{
+      font-family:'Geist Mono',monospace;font-size:11px;font-weight:500;
+      text-transform:uppercase;letter-spacing:.16em;color:var(--or);
+      margin-bottom:24px;
+      display:flex;align-items:center;justify-content:center;gap:10px
+    }
+
+    .hero-h1{
+      font-size:clamp(40px,5.5vw,72px);font-weight:800;
+      letter-spacing:-.03em;line-height:1.0;
+      margin-bottom:26px;color:var(--text)
+    }
+    .hero-h1 em{font-style:normal;color:var(--or)}
+
+    .hero-lead{
+      font-size:clamp(15px,1.8vw,18px);color:#A1A1A6;
+      line-height:1.55;max-width:560px;margin:0 auto 48px
+    }
+
+    .hero-actions{
+      display:flex;align-items:center;justify-content:center;
+      gap:12px;flex-wrap:wrap;margin-bottom:20px
+    }
+
+    .btn-pri{
+      background:var(--or);color:#fff;font-size:15px;font-weight:600;
+      padding:18px 28px;border-radius:10px;border:none;cursor:pointer;
+      letter-spacing:-.01em;min-height:56px;
+      box-shadow:0 20px 60px -10px rgba(255,106,26,.6),0 0 40px rgba(255,106,26,.3);
+      display:inline-flex;align-items:center;gap:8px;
+      transition:filter var(--e),transform var(--e),box-shadow var(--e)
+    }
+    .btn-pri:hover{filter:brightness(1.1);transform:translateY(-1px);box-shadow:0 24px 70px -8px rgba(255,106,26,.75),0 0 50px rgba(255,106,26,.4)}
+    .btn-pri:hover .arr{transform:translateX(3px)}
+    .arr{transition:transform var(--e)}
+
+    .btn-wa-hero{
+      background:var(--wa);color:#fff;font-size:14px;font-weight:600;
+      padding:18px 22px;border-radius:10px;border:none;cursor:pointer;
+      text-decoration:none;letter-spacing:-.01em;min-height:56px;
+      display:inline-flex;align-items:center;gap:8px;
+      box-shadow:0 20px 60px -10px rgba(37,211,102,.5),0 0 40px rgba(37,211,102,.25);
+      transition:filter var(--e),transform var(--e),box-shadow var(--e)
+    }
+    .btn-wa-hero:hover{filter:brightness(1.08);transform:translateY(-1px);box-shadow:0 24px 70px -8px rgba(37,211,102,.65),0 0 50px rgba(37,211,102,.35)}
+
+    .hero-meta{
+      font-family:'Geist Mono',monospace;font-size:11px;color:#71717A;
+      letter-spacing:.1em;display:flex;align-items:center;justify-content:center;gap:6px
+    }
+    .sep{color:rgba(255,255,255,.15)}
+
+    /* ── CARROSSEL DE VÍDEOS ── */
+    .vcaro-sec{
+      background:var(--bg);padding:48px 0 40px;
+      content-visibility:auto;contain-intrinsic-size:0 520px
+    }
+    .vcaro-head{
+      text-align:center;padding:0 24px 28px;
+      font-family:'Geist Mono',monospace;font-size:10px;
+      color:var(--aux);text-transform:uppercase;letter-spacing:.1em
+    }
+    .vcaro-viewport{
+      position:relative;overflow:hidden
+    }
+    /* overlay preto nas laterais */
+    .vcaro-viewport::before,.vcaro-viewport::after{
+      content:'';position:absolute;top:0;bottom:0;width:14%;
+      z-index:2;pointer-events:none
+    }
+    .vcaro-viewport::before{left:0;background:linear-gradient(90deg,#000,transparent)}
+    .vcaro-viewport::after{right:0;background:linear-gradient(-90deg,#000,transparent)}
+
+    .vcaro-track{
+      display:flex;align-items:center;gap:10px;padding:8px 0;
+      transition:transform .45s cubic-bezier(.25,.46,.45,.94);
+      will-change:transform
+    }
+
+    /* card 9:16 */
+    .vcard{
+      flex:0 0 220px;
+      aspect-ratio:9/16;
+      border-radius:14px;overflow:hidden;
+      background:#0d0d0d;
+      border:1px solid rgba(255,255,255,.07);
+      position:relative;
+      transform:scale(.86);opacity:.5;
+      transition:transform .4s ease,opacity .4s ease;
+      cursor:pointer
+    }
+    .vcard.active{transform:scale(1);opacity:1}
+    .vcard video{
+      position:absolute;inset:0;width:100%;height:100%;
+      object-fit:cover;z-index:0;display:block
+    }
+    /* overlay escuro para label */
+    .vcard-over{
+      position:absolute;inset:0;z-index:1;
+      background:linear-gradient(to top,rgba(0,0,0,.7) 0%,transparent 50%);
+      display:flex;flex-direction:column;
+      justify-content:flex-end;align-items:center;
+      padding:14px 10px
+    }
+    .vcard-label{
+      font-family:'Geist Mono',monospace;font-size:11px;
+      color:rgba(255,255,255,.8);text-transform:uppercase;
+      letter-spacing:.06em;text-align:center
+    }
+    /* botão play sobre o poster */
+    .vcard-play-btn{
+      position:absolute;inset:0;z-index:2;
+      display:flex;align-items:center;justify-content:center;
+      background:none;border:none;cursor:pointer
+    }
+    .vcard-play-icon{
+      width:52px;height:52px;border-radius:50%;
+      background:rgba(255,106,26,.88);
+      display:flex;align-items:center;justify-content:center;
+      font-size:20px;color:#fff;padding-left:4px;
+      transition:transform var(--e),background var(--e);
+      pointer-events:none
+    }
+    .vcard-play-btn:hover .vcard-play-icon{transform:scale(1.1);background:var(--or)}
+    .vcard.playing .vcard-play-btn{display:none}
+
+    /* nav */
+    .vcaro-nav{
+      display:flex;align-items:center;justify-content:center;
+      gap:14px;margin-top:20px;padding:0 24px
+    }
+    .vcaro-btn{
+      width:36px;height:36px;border-radius:9px;border:none;cursor:pointer;
+      background:rgba(255,255,255,.08);color:#fff;font-size:15px;
+      display:flex;align-items:center;justify-content:center;
+      transition:background var(--e)
+    }
+    .vcaro-btn:hover{background:rgba(255,255,255,.16)}
+    .vcaro-dots{display:flex;gap:6px;align-items:center}
+    .vdot{width:5px;height:5px;border-radius:50%;background:rgba(255,255,255,.2);transition:background var(--e),transform var(--e);cursor:pointer}
+    .vdot.on{background:var(--or);transform:scale(1.4)}
+
+    /* ── LOGO MARQUEE ── */
+    .logos-sec{background:var(--bg);overflow:hidden;content-visibility:auto;contain-intrinsic-size:0 100px}
+    .logos-head{padding:24px 24px 0;text-align:center}
+    .logos-lbl{font-family:'Geist Mono',monospace;font-size:10px;color:var(--aux);text-transform:uppercase;letter-spacing:.1em}
+    .logos-div{height:1px;background:rgba(255,255,255,.06);margin:16px 0}
+    .marquee{position:relative;overflow:hidden;padding-bottom:24px}
+    .marquee::before,.marquee::after{content:'';position:absolute;top:0;bottom:0;width:100px;z-index:2;pointer-events:none}
+    .marquee::before{left:0;background:linear-gradient(90deg,#000,transparent)}
+    .marquee::after{right:0;background:linear-gradient(-90deg,#000,transparent)}
+    .mtrack{display:flex;width:max-content;animation:mscroll 40s linear infinite}
+    .mtrack:hover{animation-play-state:paused}
+    @keyframes mscroll{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+    .mtrack img{height:28px;width:auto;object-fit:contain;margin:0 30px;flex-shrink:0;filter:grayscale(1) brightness(2) opacity(.45);transition:filter var(--e)}
+    .mtrack img:hover{filter:grayscale(0) brightness(1) opacity(1)}
+
+    /* ── PROGRESS ── */
+    .prog{
+      background:rgba(10,10,10,.96);backdrop-filter:blur(8px);
+      border-bottom:1px solid var(--border);
+      padding:11px 24px;position:sticky;top:0;z-index:99
+    }
+    .prog-meta{display:flex;justify-content:space-between;margin-bottom:7px}
+    .prog-lbl,.prog-pct{font-family:'Geist Mono',monospace;font-size:10px;text-transform:uppercase;letter-spacing:.05em}
+    .prog-lbl{color:var(--aux)}
+    .prog-pct{color:var(--or);font-weight:500}
+    .prog-track{height:2px;background:rgba(255,255,255,.1);border-radius:99px;overflow:hidden}
+    .prog-fill{height:100%;background:var(--or);border-radius:99px;width:0%;transition:width .5s ease}
+
+    /* ── QUIZ ── */
+    #s-quiz{padding-bottom:80px;min-height:100vh}
+    .qbody{padding:44px 24px 0;max-width:560px;margin:0 auto;text-align:center}
+    .q-ey{font-family:'Geist Mono',monospace;font-size:11px;color:var(--or);text-transform:uppercase;letter-spacing:.07em;margin-bottom:12px}
+    .q-txt{font-size:clamp(21px,4vw,27px);font-weight:600;letter-spacing:-.025em;line-height:1.25;margin-bottom:28px;color:var(--text)}
+    .q-hint{display:block;font-size:12px;font-family:'Geist Mono',monospace;color:var(--aux);letter-spacing:.02em;margin-top:8px}
+    .opts{list-style:none;display:flex;flex-direction:column;gap:9px;text-align:left}
+    .opt{
+      width:100%;background:var(--surface);border:1px solid var(--border);
+      border-radius:var(--rl);padding:14px 18px;cursor:pointer;
+      font-size:14px;font-weight:500;text-align:left;
+      display:flex;align-items:center;gap:14px;line-height:1.4;color:var(--text);
+      transition:border-color var(--e),background var(--e),transform var(--e)
+    }
+    .opt:hover{border-color:rgba(255,106,26,.4);background:rgba(255,106,26,.06);transform:translateX(3px)}
+    .opt.sel{border-color:rgba(255,106,26,.6);background:rgba(255,106,26,.08);box-shadow:0 0 0 1px rgba(255,106,26,.18)}
+    .omk{width:20px;height:20px;border-radius:50%;border:1.5px solid var(--border2);flex-shrink:0;display:flex;align-items:center;justify-content:center;background:rgba(255,255,255,.05);transition:all var(--e)}
+    .opt.sel .omk{background:var(--or);border-color:var(--or)}
+    .opt.sel .omk::after{content:'';width:7px;height:7px;border-radius:50%;background:#fff}
+    .opt.multi .omk{border-radius:5px}
+    .opt.multi.sel .omk::after{content:'✓';font-size:11px;font-weight:700;background:none;border-radius:0;width:auto;height:auto;color:#fff}
+
+    .qnav{padding:24px 24px 0;max-width:560px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:12px}
+    .btn-back{background:none;color:var(--muted);font-size:13px;font-weight:500;padding:11px 18px;border-radius:var(--r);border:1px solid var(--border2);cursor:pointer;min-height:46px;display:inline-flex;align-items:center;gap:6px;transition:color var(--e),border-color var(--e)}
+    .btn-back:hover{color:var(--text);border-color:rgba(255,255,255,.25)}
+    .btn-back:disabled{opacity:.25;cursor:not-allowed}
+    .btn-back:hover .al{transform:translateX(-3px)}
+    .al{transition:transform var(--e)}
+    .btn-next{background:var(--or);color:#fff;font-size:13px;font-weight:600;padding:11px 26px;border-radius:var(--r);border:none;cursor:pointer;min-height:46px;display:inline-flex;align-items:center;gap:6px;transition:background var(--e),opacity var(--e)}
+    .btn-next:disabled{opacity:.25;cursor:not-allowed;background:rgba(255,255,255,.1);color:var(--aux)}
+    .btn-next:not(:disabled):hover{background:var(--or-h)}
+    .btn-next:not(:disabled):hover .arr{transform:translateX(2px)}
+
+    /* ── CAPTURA ── */
+    #s-capture{padding:80px 0;background:var(--bg);min-height:100vh;align-items:center}
+    .cap-in{width:100%;max-width:440px;margin:0 auto;padding:0 24px;text-align:center}
+    .cap-in form{text-align:left}
+    .cap-ey{font-family:'Geist Mono',monospace;font-size:11px;color:var(--or);text-transform:uppercase;letter-spacing:.07em;margin-bottom:14px}
+    .cap-h2{font-size:clamp(24px,4vw,34px);font-weight:700;letter-spacing:-.03em;line-height:1.15;margin-bottom:10px}
+    .cap-lead{font-size:15px;color:var(--muted);margin-bottom:40px}
+    .field{margin-bottom:16px}
+    .field label{display:block;font-family:'Geist Mono',monospace;font-size:10px;font-weight:500;text-transform:uppercase;letter-spacing:.06em;color:var(--aux);margin-bottom:7px}
+    .field label span{color:var(--or);margin-right:4px}
+    .field input{display:block;width:100%;padding:13px 16px;font-size:15px;background:var(--surface);border:1px solid var(--border);border-radius:var(--r);color:var(--text);min-height:52px;transition:border-color var(--e),box-shadow var(--e)}
+    .field input:focus{outline:none;border-color:var(--or);box-shadow:0 0 0 3px rgba(255,106,26,.12)}
+    .field input.err{border-color:#E53935}
+    .ferr{font-family:'Geist Mono',monospace;font-size:10px;color:#E53935;margin-top:5px;display:none}
+    .ferr.show{display:block}
+    .btn-sub{display:block;width:100%;background:var(--or);color:#fff;font-size:14px;font-weight:600;padding:14px 24px;border-radius:var(--r);border:none;cursor:pointer;min-height:52px;letter-spacing:-.01em;box-shadow:var(--glow);margin-top:8px;transition:background var(--e),transform var(--e)}
+    .btn-sub:hover{background:var(--or-h);transform:translateY(-1px)}
+    .cap-priv{font-family:'Geist Mono',monospace;font-size:10px;color:var(--off);text-align:center;margin-top:14px;text-transform:uppercase;letter-spacing:.05em}
+
+    /* ── RESULTADO ── */
+    #s-result{padding-bottom:0}
+    .res-hero{background:var(--bg);padding:80px 24px;text-align:center;position:relative;overflow:hidden}
+    .res-hero::before{content:'';position:absolute;inset:0;background-image:radial-gradient(circle,rgba(255,255,255,.04) .5px,transparent .5px);background-size:22px 22px}
+    .res-in{max-width:600px;margin:0 auto;position:relative;z-index:1}
+    .res-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(255,106,26,.1);border:1px solid rgba(255,106,26,.25);border-radius:99px;padding:5px 14px;font-family:'Geist Mono',monospace;font-size:10px;color:var(--or);text-transform:uppercase;letter-spacing:.06em;margin-bottom:24px}
+    .res-h2{font-size:clamp(28px,5vw,50px);font-weight:700;letter-spacing:-.035em;line-height:1.05;color:var(--text);margin-bottom:14px}
+    .res-sub{font-size:16px;color:var(--muted);max-width:460px;margin:0 auto;line-height:1.55}
+
+    .pains-sec{padding:60px 24px;background:var(--bg2);text-align:center;content-visibility:auto;contain-intrinsic-size:0 380px}
+    .sec-num{font-family:'Geist Mono',monospace;font-size:10px;color:var(--or);text-transform:uppercase;letter-spacing:.07em;display:block;margin-bottom:8px}
+    .sec-ttl{font-size:clamp(20px,3vw,26px);font-weight:600;letter-spacing:-.025em;margin-bottom:28px}
+    .pain-list{display:flex;flex-direction:column;gap:10px;max-width:600px;margin:0 auto;text-align:left}
+    .pain-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--rl);padding:18px 20px;display:flex;gap:14px;align-items:flex-start}
+    .pn{font-family:'Geist Mono',monospace;font-size:10px;color:var(--or);background:rgba(255,106,26,.1);padding:3px 8px;border-radius:5px;font-weight:500;white-space:nowrap;margin-top:2px}
+    .pt{font-size:14px;color:var(--muted);line-height:1.6;font-weight:500}
+
+    .cases-sec{background:var(--bg);padding:60px 0;text-align:center;content-visibility:auto;contain-intrinsic-size:0 520px}
+    .cases-head{padding:0 24px 28px}
+    .cases-head .sec-ttl{color:var(--text)}
+
+    .cta-final{background:var(--bg);padding:80px 24px;text-align:center;border-top:1px solid var(--border);position:relative;overflow:hidden}
+    .cta-final::before{content:'';position:absolute;inset:0;background-image:radial-gradient(circle,rgba(255,255,255,.025) .5px,transparent .5px);background-size:22px 22px}
+    .cta-in{max-width:500px;margin:0 auto;position:relative;z-index:1}
+    .cta-h3{font-size:clamp(26px,4vw,44px);font-weight:700;letter-spacing:-.035em;line-height:1.1;color:var(--text);margin-bottom:12px}
+    .cta-lead{font-size:15px;color:var(--muted);margin-bottom:36px}
+    .btn-wa-cta{display:inline-flex;align-items:center;gap:12px;background:var(--wa);color:#fff;font-family:inherit;font-size:15px;font-weight:600;padding:16px 32px;border-radius:var(--r);border:none;cursor:pointer;text-decoration:none;letter-spacing:-.01em;min-height:54px;width:100%;max-width:380px;justify-content:center;box-shadow:0 12px 40px -12px rgba(37,211,102,.35);transition:opacity var(--e),transform var(--e)}
+    .btn-wa-cta:hover{opacity:.88;transform:translateY(-1px)}
+    .seals{display:flex;flex-wrap:wrap;justify-content:center;gap:16px;margin-top:22px}
+    .seal{font-family:'Geist Mono',monospace;font-size:10px;color:var(--off);text-transform:uppercase;letter-spacing:.05em;display:flex;align-items:center;gap:6px}
+    .seal::before{content:'';width:4px;height:4px;border-radius:50%;background:rgba(255,255,255,.15);flex-shrink:0}
+
+    /* ── RESPONSIVE ── */
+    @media(max-width:600px){
+      .hero{padding:64px 24px 72px;min-height:100svh}
+      .xh{display:none}
+      .vcard{flex:0 0 68vw;max-width:210px}
+      .qbody,.qnav{padding-left:20px;padding-right:20px}
+      .pains-sec,.cases-sec{padding:44px 0}
+      .res-hero,.cta-final{padding:56px 20px}
+      .hero-actions{flex-direction:column;align-items:stretch;max-width:340px;margin-left:auto;margin-right:auto}
+      .btn-pri,.btn-wa-hero{justify-content:center;width:100%}
+    }
+    :focus-visible{outline:2px solid var(--or);outline-offset:3px}
+  </style>
+</head>
+<body>
+
+<!-- ── WHATSAPP FLUTUANTE ── -->
+<a
+  href="https://wa.me/5534999386446?text=Ol%C3%A1!%20Vim%20pelo%20site%20da%20Hadar%20e%20quero%20saber%20mais."
+  class="wa-float"
+  target="_blank"
+  rel="noopener noreferrer"
+  aria-label="Falar no WhatsApp"
+  onclick="trackEv('whatsapp_float')"
+>
+  <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+</a>
+
+
+<!-- ══════════ CAPA ══════════ -->
+<main id="s-cover" class="screen active">
+
+  <!-- 1ª dobra: hero -->
+  <section class="hero">
+    <div class="xh" aria-hidden="true"><div class="xh-box"></div></div>
+    <div class="hero-in">
+
+      <!-- Logo Hadar acima do título -->
+      <div class="hero-logo">
+        <img
+          src="LOGO.png" alt="Hadar Company"
+          onerror="this.style.display='none';document.querySelector('.hero-logo-fb').style.display='block'"
+        />
+        <span class="hero-logo-fb" style="display:none">HADAR</span>
+      </div>
+
+      <p class="eyebrow">
+        <span class="dot" aria-hidden="true"></span>
+        // diagnóstico gratuito · alto paranaíba
+      </p>
+
+      <h1 class="hero-h1">
+        Empresas do Alto Paranaíba<br>
+        estão crescendo.<br>
+        <em>A sua está junto?</em>
+      </h1>
+
+      <p class="hero-lead">
+        Em 60 segundos, descubra exatamente onde seu negócio está perdendo oportunidade. 7 perguntas, diagnóstico personalizado, 100% gratuito.
+      </p>
+
+      <div class="hero-actions">
+        <button class="btn-pri" onclick="startQuiz()">
+          Quero meu diagnóstico grátis <span class="arr" aria-hidden="true">→</span>
+        </button>
+        <a
+          href="https://wa.me/5534999386446?text=Ol%C3%A1!%20Vim%20pelo%20site%20da%20Hadar%20e%20quero%20saber%20mais."
+          class="btn-wa-hero"
+          target="_blank"
+          rel="noopener noreferrer"
+          onclick="trackEv('whatsapp_hero')"
+        >
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          Falar no WhatsApp
+        </a>
+      </div>
+
+      <p class="hero-meta">
+        <span>// 7 perguntas</span>
+        <span class="sep">·</span>
+        <span>60 seg</span>
+        <span class="sep">·</span>
+        <span>100% gratuito</span>
+      </p>
+
+    </div>
+  </section>
+
+  <!-- 2ª dobra: carrossel de vídeos -->
+  <section class="vcaro-sec" id="vcaro-cover" aria-label="Cases em vídeo">
+    <p class="vcaro-head">// cases em vídeo · hadar company · alto paranaíba</p>
+    <div class="vcaro-viewport" id="vc-vp">
+      <div class="vcaro-track" id="vc-track"></div>
+    </div>
+    <div class="vcaro-nav">
+      <button class="vcaro-btn" onclick="vcMove(-1,'vc')" aria-label="Anterior">←</button>
+      <div class="vcaro-dots" id="vc-dots"></div>
+      <button class="vcaro-btn" onclick="vcMove(1,'vc')" aria-label="Próximo">→</button>
+    </div>
+  </section>
+
+  <!-- Logos parceiros -->
+  <div class="logos-sec" aria-label="Parceiros e clientes">
+    <div class="logos-head"><p class="logos-lbl">// parceiros &amp; clientes · alto paranaíba e região</p></div>
+    <div class="logos-div"></div>
+    <div class="marquee"><div class="mtrack" id="mtrack"></div></div>
+  </div>
+
+</main>
+
+
+<!-- ══════════ QUIZ ══════════ -->
+<main id="s-quiz" class="screen" aria-label="Diagnóstico">
+  <div class="prog" role="progressbar" aria-valuemin="0" aria-valuemax="7" aria-valuenow="0" id="prog">
+    <div class="prog-meta">
+      <span class="prog-lbl" id="prog-lbl">// pergunta 01 de 07</span>
+      <span class="prog-pct" id="prog-pct">0%</span>
+    </div>
+    <div class="prog-track"><div class="prog-fill" id="prog-fill"></div></div>
+  </div>
+  <div id="qcontainer" class="qbody"></div>
+  <div class="qnav">
+    <button class="btn-back" id="btn-back" onclick="prevQ()" disabled>
+      <span class="al">←</span> Voltar
+    </button>
+    <button class="btn-next" id="btn-next" onclick="nextQ()" disabled>
+      Próxima <span class="arr">→</span>
+    </button>
+  </div>
+</main>
+
+
+<!-- ══════════ CAPTURA ══════════ -->
+<main id="s-capture" class="screen" aria-label="Seus dados">
+  <div class="cap-in">
+    <p class="cap-ey">// etapa final</p>
+    <h2 class="cap-h2">Pra onde enviamos<br>seu diagnóstico?</h2>
+    <p class="cap-lead">Preencha abaixo e veja seu resultado personalizado.</p>
+    <form id="cap-form" onsubmit="submitCap(event)" novalidate>
+      <div class="field">
+        <label for="f-name"><span>//</span> nome completo</label>
+        <input type="text" id="f-name" placeholder="João Silva" autocomplete="name" required aria-required="true" />
+        <p class="ferr" id="err-name" role="alert">Insira seu nome.</p>
+      </div>
+      <div class="field">
+        <label for="f-phone"><span>//</span> whatsapp com ddd</label>
+        <input type="tel" id="f-phone" placeholder="(34) 99999-9999" autocomplete="tel" inputmode="numeric" required aria-required="true" />
+        <p class="ferr" id="err-phone" role="alert">Insira um WhatsApp válido com DDD.</p>
+      </div>
+      <button type="submit" class="btn-sub">Ver meu diagnóstico →</button>
+    </form>
+    <p class="cap-priv">// dados protegidos · sem spam</p>
+  </div>
+</main>
+
+
+<!-- ══════════ RESULTADO ══════════ -->
+<main id="s-result" class="screen" aria-label="Resultado">
+
+  <section class="res-hero">
+    <div class="res-in">
+      <div class="res-badge"><span class="dot" aria-hidden="true"></span> // diagnóstico concluído</div>
+      <h2 class="res-h2" id="res-h2">Diagnóstico pronto.</h2>
+      <p class="res-sub">Identificamos 3 pontos críticos que estão travando o crescimento da sua empresa hoje.</p>
+    </div>
+  </section>
+
+  <section class="pains-sec" aria-label="Pontos críticos">
+    <span class="sec-num">// 01 — diagnóstico</span>
+    <h3 class="sec-ttl">Seus 3 pontos críticos</h3>
+    <div class="pain-list" id="pain-list" role="list"></div>
+  </section>
+
+  <section class="cases-sec vcaro-sec" aria-label="Cases de clientes">
+    <div class="cases-head">
+      <span class="sec-num">// 02 — portfólio</span>
+      <h3 class="sec-ttl">Empresas do Alto Paranaíba que já mudaram</h3>
+    </div>
+    <div class="vcaro-viewport" id="vr-vp">
+      <div class="vcaro-track" id="vr-track"></div>
+    </div>
+    <div class="vcaro-nav">
+      <button class="vcaro-btn" onclick="vcMove(-1,'vr')" aria-label="Anterior">←</button>
+      <div class="vcaro-dots" id="vr-dots"></div>
+      <button class="vcaro-btn" onclick="vcMove(1,'vr')" aria-label="Próximo">→</button>
+    </div>
+  </section>
+
+  <div class="logos-sec" aria-label="Mais parceiros">
+    <div class="logos-head"><p class="logos-lbl">// mais empresas que confiam na hadar</p></div>
+    <div class="logos-div"></div>
+    <div class="marquee"><div class="mtrack" id="mtrack2"></div></div>
+  </div>
+
+  <section class="cta-final" aria-label="Próximo passo">
+    <div class="cta-in">
+      <p class="eyebrow" style="justify-content:center;margin-bottom:20px">// próximo passo</p>
+      <h3 class="cta-h3">Quer um plano de ação<br>pra sua empresa?</h3>
+      <p class="cta-lead">Nosso time envia uma proposta personalizada no WhatsApp, sem compromisso.</p>
+      <a href="#" id="btn-wa" class="btn-wa-cta" target="_blank" rel="noopener noreferrer" onclick="trackEv('whatsapp_cta')">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+        Receber meu plano no WhatsApp
+      </a>
+      <div class="seals">
+        <span class="seal">Atendimento humano</span>
+        <span class="seal">Sem compromisso</span>
+        <span class="seal">Resposta em até 1h útil</span>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+
+<script>
+/* ── DADOS ── */
+const VIDEOS = [
+  { src:'assets/Videos%20clientes/almo.mp4',               label:'ALMO' },
+  { src:'assets/Videos%20clientes/delas.mp4',              label:'Delas' },
+  { src:'assets/Videos%20clientes/dr%20ramon.mp4',         label:'Dr. Ramon' },
+  { src:'assets/Videos%20clientes/hadar.mp4',              label:'Hadar Company' },
+  { src:'assets/Videos%20clientes/sorveteria.mp4',         label:'Sorveteria' },
+  { src:'assets/Videos%20clientes/top%20fragance.mp4',     label:'Top Fragance' },
+  { src:'assets/Videos%20clientes/video%20ana%20luiza.mp4',label:'Ana Luiza' },
+  { src:'assets/Videos%20clientes/video%20atual.mp4',      label:'Atual' },
+  { src:'assets/Videos%20clientes/video%20julia.mp4',      label:'Júlia' },
+  { src:'assets/Videos%20clientes/video%20nathalia.mp4',   label:'Nathália' },
+  { src:'assets/Videos%20clientes/video%20planalto.mp4',   label:'Planalto' }
+];
+
+const LOGOS = [
+  ['logo%20parceiros/LOGO%20BRANCA%20ALMO.png',    'ALMO'],
+  ['logo%20parceiros/PNG%20BRANCO.png',             'Parceiro'],
+  ['logo%20parceiros/abo%20patos%20de%20minas.png', 'ABO Patos de Minas'],
+  ['logo%20parceiros/lagoa%20tenis%20clube.png',    'Lagoa Tênis Clube'],
+  ['logo%20parceiros/lamorye.png',                  'Lamorye'],
+  ['logo%20parceiros/logo%20branca%20delas.png',    'Delas'],
+  ['logo%20parceiros/merch%20maia.png',             'Merch Maia'],
+  ['logo%20parceiros/monik.png',                    'Monik'],
+  ['logo%20parceiros/passarela.png',                'Passarela'],
+  ['logo%20parceiros/purilimp.png',                 'Purilimp'],
+  ['logo%20parceiros/rockenbach.png',               'Rockenbach'],
+  ['logo%20parceiros/skimel.png',                   'Skimel'],
+  ['logo%20parceiros/varejao%20planalto.png',       'Varejão Planalto']
+];
+
+const QUESTIONS = [
+  { t:'Qual o seu papel na empresa?', type:'single',
+    o:['Sou o(a) dono(a)/sócio(a)','Sou gestor(a) de marketing','Trabalho na equipe','Ainda estou começando meu negócio'] },
+  { t:'Há quanto tempo sua empresa está no mercado?', type:'single',
+    o:['Menos de 1 ano','1 a 3 anos','3 a 10 anos','Mais de 10 anos'] },
+  { t:'Qual o faturamento médio mensal da sua empresa?', type:'single',
+    o:['Até R$ 20 mil','R$ 20 mil a R$ 50 mil','R$ 50 mil a R$ 200 mil','Acima de R$ 200 mil'] },
+  { t:'Qual o maior desafio do seu marketing hoje?', type:'single',
+    o:['Não consigo gerar leads suficientes','Gero leads, mas não convertem em vendas','Não sei medir o que está funcionando','Não tenho tempo/equipe pra cuidar disso','Faço tudo "no achismo", sem estratégia'] },
+  { t:'O que você já tentou pra crescer?', type:'multi', hint:'Pode marcar mais de uma opção',
+    o:['Tráfego pago (Meta/Google Ads)','Conteúdo orgânico (Instagram/TikTok)','Indicações e boca a boca','Contratei outra agência antes','Ainda não tentei nada estruturado'] },
+  { t:'Você já tem material de vídeo da sua empresa?', type:'single',
+    o:['Sim, gravo com frequência','Tenho alguns, mas amadores','Não tenho nada','Não gosto/tenho vergonha de aparecer'] },
+  { t:'Quando você quer começar a ver resultados?', type:'single',
+    o:['Pra ontem (urgente)','Nos próximos 30 dias','Nos próximos 90 dias','Estou apenas pesquisando'] }
+];
+
+/* ── ESTADO ── */
+const S = { ans:{}, name:'', phone:'', cur:0 };
+
+/* ── THUMBNAILS ── */
+function loadThumbs(trackEl) {
+  trackEl.querySelectorAll('video').forEach(vid => {
+    if (vid.getAttribute('preload') === 'none') {
+      vid.preload = 'metadata';
+      vid.addEventListener('loadedmetadata', () => {
+        vid.currentTime = Math.min(1, vid.duration * 0.04 || 1);
+      }, { once: true });
+    }
+  });
+}
+
+/* ── CARROSSEL INFINITO ── */
+const VC = {};
+const CLONE_N = 2;
+
+function buildCarousel(prefix) {
+  const trackEl = document.getElementById(`${prefix}-track`);
+  const dotsEl  = document.getElementById(`${prefix}-dots`);
+  const vpEl    = document.getElementById(`${prefix}-vp`);
+  if (!trackEl) return;
+
+  const n = VIDEOS.length;
+  VC[prefix] = { idx: 0, pos: CLONE_N, total: n, activeVid: null };
+
+  /* índices: [últimos CLONE_N, todos, primeiros CLONE_N] */
+  const ext = [
+    ...Array.from({length: CLONE_N}, (_, i) => n - CLONE_N + i),
+    ...Array.from({length: n},       (_, i) => i),
+    ...Array.from({length: CLONE_N}, (_, i) => i)
+  ];
+
+  trackEl.innerHTML = ext.map((vi, posI) => {
+    const v = VIDEOS[vi];
+    return `<div class="vcard${posI===CLONE_N?' active':''}" data-pos="${posI}">
+      <video src="${v.src}" preload="none" playsinline muted loop aria-label="${v.label}"></video>
+      <div class="vcard-over"><span class="vcard-label">${v.label}</span></div>
+      <button class="vcard-play-btn" onclick="playCard(this,${posI},'${prefix}')" aria-label="Reproduzir ${v.label}">
+        <span class="vcard-play-icon">▶</span>
+      </button>
+    </div>`;
+  }).join('');
+
+  dotsEl.innerHTML = VIDEOS.map((_, i) =>
+    `<span class="vdot${i===0?' on':''}" onclick="vcGoto('${prefix}',${i})"></span>`
+  ).join('');
+
+  let tx = 0;
+  vpEl.addEventListener('touchstart', e => { tx = e.touches[0].clientX; }, { passive:true });
+  vpEl.addEventListener('touchend', e => {
+    const dx = e.changedTouches[0].clientX - tx;
+    if (dx < -40) vcMove(1, prefix);
+    else if (dx > 40) vcMove(-1, prefix);
+  }, { passive:true });
+
+  vcApplyPos(prefix, CLONE_N, false);
+
+  const obs = new IntersectionObserver(entries => {
+    if (entries[0].isIntersecting) { loadThumbs(trackEl); obs.disconnect(); }
+  }, { rootMargin: '300px' });
+  obs.observe(vpEl);
+}
+
+function vcApplyPos(prefix, pos, animate) {
+  const trackEl = document.getElementById(`${prefix}-track`);
+  const vpEl    = document.getElementById(`${prefix}-vp`);
+  if (!trackEl) return;
+  const st    = VC[prefix];
+  const n     = st.total;
+  const cards = trackEl.querySelectorAll('.vcard');
+  const logIdx = ((pos - CLONE_N) % n + n) % n;
+  st.idx = logIdx; st.pos = pos;
+
+  cards.forEach((c, i) => c.classList.toggle('active', i === pos));
+  document.querySelectorAll(`#${prefix}-dots .vdot`).forEach((d, i) => d.classList.toggle('on', i === logIdx));
+
+  const card   = cards[pos];
+  const vw     = vpEl.offsetWidth;
+  const cw     = card ? card.offsetWidth : 220;
+  let left     = 0;
+  cards.forEach((c, i) => { if (i < pos) left += c.offsetWidth + 10; });
+  const offset = left - (vw - cw) / 2;
+
+  if (st.activeVid) {
+    st.activeVid.pause();
+    st.activeVid.closest('.vcard')?.classList.remove('playing');
+    const pb = st.activeVid.closest('.vcard')?.querySelector('.vcard-play-btn');
+    if (pb) pb.style.display = '';
+    st.activeVid = null;
+  }
+
+  if (!animate) {
+    trackEl.style.transition = 'none';
+    trackEl.style.transform = `translateX(${-Math.max(0,offset)}px)`;
+    void trackEl.offsetWidth;
+    trackEl.style.transition = '';
+  } else {
+    trackEl.style.transform = `translateX(${-Math.max(0,offset)}px)`;
+    if (pos < CLONE_N || pos >= CLONE_N + n) {
+      const jump = pos < CLONE_N ? pos + n : pos - n;
+      trackEl.addEventListener('transitionend', () => vcApplyPos(prefix, jump, false), { once: true });
+    }
+  }
+}
+
+function vcMove(dir, prefix) { vcApplyPos(prefix, VC[prefix].pos + dir, true); }
+function vcGoto(prefix, idx) { vcApplyPos(prefix, CLONE_N + idx, true); }
+
+function playCard(btn, posI, prefix) {
+  const card = btn.closest('.vcard');
+  const vid  = card.querySelector('video');
+  if (!vid) return;
+
+  const trackEl = document.getElementById(`${prefix}-track`);
+  trackEl.querySelectorAll('.vcard.playing').forEach(c => {
+    const v2 = c.querySelector('video'); if (v2) v2.pause();
+    c.classList.remove('playing');
+    const b = c.querySelector('.vcard-play-btn'); if (b) b.style.display = '';
+  });
+
+  vcApplyPos(prefix, posI, true);
+  vid.controls = true;
+  vid.preload = 'auto';
+  vid.play().catch(() => vid.play());
+  card.classList.add('playing');
+  btn.style.display = 'none';
+  VC[prefix].activeVid = vid;
+
+  vid.addEventListener('ended', () => {
+    card.classList.remove('playing');
+    btn.style.display = '';
+    vid.controls = false;
+    VC[prefix].activeVid = null;
+  }, { once: true });
+}
+
+/* ── LOGO MARQUEE ── */
+function buildMarquee(id) {
+  const el = document.getElementById(id);
+  if (!el) return;
+  el.innerHTML = [...LOGOS, ...LOGOS].map(([src, alt]) =>
+    `<img src="${src}" alt="${alt}" loading="lazy" width="120" height="28" />`
+  ).join('');
+}
+
+/* ── INIT DIFERIDO ── */
+setTimeout(() => {
+  buildCarousel('vc');
+  buildCarousel('vr');
+  buildMarquee('mtrack');
+  buildMarquee('mtrack2');
+}, 0);
+
+/* ── TRACKING ── */
+function trackEv(n, p) {
+  if (typeof fbq  === 'function') fbq('trackCustom', n, p||{});
+  if (typeof gtag === 'function') gtag('event', n, p||{});
+}
+
+/* ── TELAS ── */
+function show(id) {
+  document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function startQuiz() { trackEv('quiz_started'); show('s-quiz'); renderQ(0); }
+
+/* ── QUIZ ── */
+function renderQ(i) {
+  const q = QUESTIONS[i];
+  S.cur = i;
+  const pct = Math.round(i / QUESTIONS.length * 100);
+  document.getElementById('prog-fill').style.width  = pct + '%';
+  document.getElementById('prog-lbl').textContent   =
+    `// pergunta ${String(i+1).padStart(2,'0')} de ${String(QUESTIONS.length).padStart(2,'0')}`;
+  document.getElementById('prog-pct').textContent   = pct + '%';
+  document.getElementById('prog').setAttribute('aria-valuenow', i+1);
+  const saved = S.ans[i];
+  const has   = Array.isArray(saved) ? saved.length > 0 : saved !== undefined;
+  document.getElementById('btn-next').disabled = !has;
+  document.getElementById('btn-back').disabled = i === 0;
+  const isM  = q.type === 'multi';
+  const opts = q.o.map(opt => {
+    const sel = isM ? (Array.isArray(saved) && saved.includes(opt)) : saved === opt;
+    return `<li><button class="opt${isM?' multi':''}${sel?' sel':''}"
+      onclick="pick(${i},'${esc(opt)}',${isM})" aria-pressed="${sel}" type="button">
+      <span class="omk" aria-hidden="true"></span><span>${opt}</span></button></li>`;
+  }).join('');
+  document.getElementById('qcontainer').innerHTML =
+    `<p class="q-ey">// pergunta ${i+1}</p>
+     <h2 class="q-txt">${q.t}${q.hint?`<small class="q-hint">// ${q.hint}</small>`:''}</h2>
+     <ul class="opts" role="group" aria-label="Opções">${opts}</ul>`;
+}
+
+function esc(s) { return s.replace(/\\/g,'\\\\').replace(/'/g,"\\'"); }
+
+function pick(i, v, isM) {
+  if (isM) {
+    if (!Array.isArray(S.ans[i])) S.ans[i] = [];
+    const a = S.ans[i], j = a.indexOf(v);
+    if (j > -1) a.splice(j, 1); else a.push(v);
+  } else { S.ans[i] = v; }
+  trackEv('quiz_question_answered', { question_number: i+1 });
+  renderQ(i);
+}
+
+function nextQ() {
+  const n = S.cur + 1;
+  if (n < QUESTIONS.length) { renderQ(n); window.scrollTo({ top: 0, behavior: 'smooth' }); }
+  else { trackEv('quiz_completed'); show('s-capture'); }
+}
+function prevQ() { if (S.cur > 0) { renderQ(S.cur - 1); window.scrollTo({ top: 0, behavior: 'smooth' }); } }
+
+/* ── CAPTURA ── */
+document.getElementById('f-phone').addEventListener('input', e => {
+  let v = e.target.value.replace(/\D/g,'').slice(0,11);
+  if (v.length>6)      v = `(${v.slice(0,2)}) ${v.slice(2,7)}-${v.slice(7)}`;
+  else if (v.length>2) v = `(${v.slice(0,2)}) ${v.slice(2)}`;
+  else if (v.length>0) v = `(${v}`;
+  e.target.value = v;
+});
+
+function submitCap(e) {
+  e.preventDefault();
+  const nEl=document.getElementById('f-name'), pEl=document.getElementById('f-phone');
+  const eN=document.getElementById('err-name'), eP=document.getElementById('err-phone');
+  let ok = true;
+  if (nEl.value.trim().length < 2) { nEl.classList.add('err'); eN.classList.add('show'); ok=false; }
+  else { nEl.classList.remove('err'); eN.classList.remove('show'); }
+  const d = pEl.value.replace(/\D/g,'');
+  if (!/^[1-9]{2}9?\d{8}$/.test(d)) { pEl.classList.add('err'); eP.classList.add('show'); ok=false; }
+  else { pEl.classList.remove('err'); eP.classList.remove('show'); }
+  if (!ok) return;
+  S.name = nEl.value.trim(); S.phone = pEl.value;
+  trackEv('lead_generated');
+  buildResult(); show('s-result');
+}
+
+/* ── DIAGNÓSTICO ── */
+function getDiag() {
+  const a=S.ans, p=[];
+  const m1={
+    'Não consigo gerar leads suficientes':   'Falta de previsibilidade na geração de leads — você depende da sorte ao invés de um sistema.',
+    'Gero leads, mas não convertem em vendas':'Vazamento no funil de vendas — você atrai pessoas, mas perde dinheiro na conversão.',
+    'Não sei medir o que está funcionando':  'Decisões no escuro — sem métricas claras, cada real investido é uma aposta.',
+    'Não tenho tempo/equipe pra cuidar disso':'Operação sobrecarregada — marketing virou mais um peso na agenda, não um motor de crescimento.',
+    'Faço tudo "no achismo", sem estratégia':'Estratégia inexistente — sem direção, qualquer caminho parece certo (e nenhum leva longe).'
+  };
+  p.push(m1[a[3]]||'Estratégia de marketing incompleta — há lacunas críticas no processo de aquisição.');
+  const q5=Array.isArray(a[4])?a[4]:[];
+  if      (q5.includes('Contratei outra agência antes'))      p.push('Frustração com agências que prometem e não entregam — você precisa de parceiros, não fornecedores.');
+  else if (q5.includes('Ainda não tentei nada estruturado'))   p.push('Crescimento orgânico tem teto — sem estratégia paga e dados, sua empresa estaciona.');
+  else if (q5.length===1&&q5[0]==='Tráfego pago (Meta/Google Ads)') p.push('Tráfego pago sem estratégia de conteúdo é dinheiro queimado — anúncio sem autoridade não converte.');
+  else if (q5.length===1&&q5[0]==='Indicações e boca a boca')  p.push('Depender só de indicação é frágil — basta um mês ruim pra travar o caixa.');
+  else p.push('Esforços fragmentados — você faz várias coisas, mas nada conversa entre si.');
+  const m3={
+    'Não tenho nada':                       'Ausência de prova social em vídeo — em 2026, quem não aparece, não vende.',
+    'Tenho alguns, mas amadores':            'Material de vídeo sem padrão profissional — passa a impressão errada do tamanho real da empresa.',
+    'Não gosto/tenho vergonha de aparecer': 'O dono que não aparece transfere autoridade pra concorrência — e a vergonha custa caro.',
+    'Sim, gravo com frequência':            'Volume sem estratégia — gravar muito sem roteiro e edição profissional pulveriza o resultado.'
+  };
+  p.push(m3[a[5]]||'Presença em vídeo inconsistente — sem estratégia audiovisual, sua marca fica invisível.');
+  return p;
+}
+
+function buildResult() {
+  document.getElementById('res-h2').textContent = `Diagnóstico pronto, ${S.name.split(' ')[0]}.`;
+  document.getElementById('pain-list').innerHTML = getDiag().map((t,i)=>
+    `<div class="pain-card" role="listitem"><span class="pn">// 0${i+1}</span><p class="pt">${t}</p></div>`
+  ).join('');
+  document.getElementById('btn-wa').href = waURL();
+}
+
+function waURL() {
+  const a=S.ans, q5=Array.isArray(a[4])?a[4].join(', '):(a[4]||'—');
+  return 'https://wa.me/5534999386446?text='+encodeURIComponent(
+`Olá! Acabei de fazer o diagnóstico no site da Hadar.
+
+👤 Nome: ${S.name}
+🏢 Papel: ${a[0]||'—'}
+⏱️ Tempo de empresa: ${a[1]||'—'}
+💰 Faturamento: ${a[2]||'—'}
+🎯 Maior desafio: ${a[3]||'—'}
+🚀 Já tentei: ${q5}
+🎥 Vídeo: ${a[5]||'—'}
+⏰ Urgência: ${a[6]||'—'}
+
+Quero receber meu plano de ação personalizado!`);
+}
+</script>
+</body>
+</html>

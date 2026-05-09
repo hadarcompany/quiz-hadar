@@ -1,0 +1,8 @@
+# Premiere Pro
+*.prproj
+Adobe Premiere Pro Auto-Save/
+
+# Videos não usados / oversized
+assets/Videos clientes/video thumb.mp4
+assets/Videos clientes/Untitled.prproj
+assets/Videos clientes/thumbs/
