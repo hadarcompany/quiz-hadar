@@ -84,7 +84,7 @@
     .hero{
       padding:80px 80px 88px;text-align:center;
       position:relative;overflow:hidden;
-      background:#000;
+      background:#000 url('assets/Videos%20clientes/fundo-enquanto-nao-carrega.png') center/cover no-repeat;
       min-height:100svh;
       display:flex;flex-direction:column;justify-content:center;align-items:center
     }
@@ -388,7 +388,7 @@
   <!-- 1ª dobra: hero -->
   <section class="hero">
     <video class="hero-bg-vid" muted loop playsinline preload="none" id="hero-bg-vid">
-      <source src="assets/Videos%20clientes/video%20bg.mp4" type="video/mp4">
+      <source src="assets/Videos%20clientes/video%20bg1.mp4" type="video/mp4">
     </video>
     <div class="xh" aria-hidden="true"><div class="xh-box"></div></div>
     <div class="hero-in">
@@ -604,7 +604,7 @@ function loadThumbs(trackEl) {
 
 /* ── CARROSSEL INFINITO ── */
 const VC = {};
-const CLONE_N = 2;
+const CLONE_N = 4;
 
 function buildCarousel(prefix) {
   const trackEl = document.getElementById(`${prefix}-track`);
