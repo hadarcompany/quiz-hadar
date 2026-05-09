@@ -60,7 +60,7 @@
     /* ── SCREENS ── */
     .screen{display:none}
     .screen.active{display:block;animation:fadeUp .35s ease forwards}
-    #s-capture.active{display:flex}
+    #s-result.active{display:flex}
     @keyframes fadeUp{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:translateY(0)}}
 
     /* ── FLOATING WHATSAPP ── */
@@ -321,55 +321,20 @@
     .btn-next:not(:disabled):hover{background:var(--or-h)}
     .btn-next:not(:disabled):hover .arr{transform:translateX(2px)}
 
-    /* ── CAPTURA ── */
-    #s-capture{padding:80px 0;background:var(--bg);min-height:100vh;align-items:center}
-    .cap-in{width:100%;max-width:440px;margin:0 auto;padding:0 24px;text-align:center}
-    .cap-in form{text-align:left}
-    .cap-ey{font-family:'Geist Mono',monospace;font-size:11px;color:var(--or);text-transform:uppercase;letter-spacing:.07em;margin-bottom:14px}
-    .cap-h2{font-size:clamp(24px,4vw,34px);font-weight:700;letter-spacing:-.03em;line-height:1.15;margin-bottom:10px}
-    .cap-lead{font-size:15px;color:var(--muted);margin-bottom:40px}
-    .field{margin-bottom:16px}
-    .field label{display:block;font-family:'Geist Mono',monospace;font-size:10px;font-weight:500;text-transform:uppercase;letter-spacing:.06em;color:var(--aux);margin-bottom:7px}
-    .field label span{color:var(--or);margin-right:4px}
-    .field input{display:block;width:100%;padding:13px 16px;font-size:15px;background:var(--surface);border:1px solid var(--border);border-radius:var(--r);color:var(--text);min-height:52px;transition:border-color var(--e),box-shadow var(--e)}
-    .field input:focus{outline:none;border-color:var(--or);box-shadow:0 0 0 3px rgba(255,106,26,.12)}
-    .field input.err{border-color:#E53935}
-    .ferr{font-family:'Geist Mono',monospace;font-size:10px;color:#E53935;margin-top:5px;display:none}
-    .ferr.show{display:block}
-    .btn-sub{display:block;width:100%;background:var(--or);color:#fff;font-size:14px;font-weight:600;padding:14px 24px;border-radius:var(--r);border:none;cursor:pointer;min-height:52px;letter-spacing:-.01em;box-shadow:var(--glow);margin-top:8px;transition:background var(--e),transform var(--e)}
-    .btn-sub:hover{background:var(--or-h);transform:translateY(-1px)}
-    .cap-priv{font-family:'Geist Mono',monospace;font-size:10px;color:var(--off);text-align:center;margin-top:14px;text-transform:uppercase;letter-spacing:.05em}
-
-    /* ── RESULTADO ── */
-    #s-result{padding-bottom:0}
-    .res-hero{background:var(--bg);padding:80px 24px;text-align:center;position:relative;overflow:hidden}
-    .res-hero::before{content:'';position:absolute;inset:0;background-image:radial-gradient(circle,rgba(255,255,255,.04) .5px,transparent .5px);background-size:22px 22px}
-    .res-in{max-width:600px;margin:0 auto;position:relative;z-index:1}
-    .res-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(255,106,26,.1);border:1px solid rgba(255,106,26,.25);border-radius:99px;padding:5px 14px;font-family:'Geist Mono',monospace;font-size:10px;color:var(--or);text-transform:uppercase;letter-spacing:.06em;margin-bottom:24px}
-    .res-h2{font-size:clamp(28px,5vw,50px);font-weight:700;letter-spacing:-.035em;line-height:1.05;color:var(--text);margin-bottom:14px}
-    .res-sub{font-size:16px;color:var(--muted);max-width:460px;margin:0 auto;line-height:1.55}
-
-    .pains-sec{padding:60px 24px;background:var(--bg2);text-align:center;content-visibility:auto;contain-intrinsic-size:0 380px}
-    .sec-num{font-family:'Geist Mono',monospace;font-size:10px;color:var(--or);text-transform:uppercase;letter-spacing:.07em;display:block;margin-bottom:8px}
-    .sec-ttl{font-size:clamp(20px,3vw,26px);font-weight:600;letter-spacing:-.025em;margin-bottom:28px}
-    .pain-list{display:flex;flex-direction:column;gap:10px;max-width:600px;margin:0 auto;text-align:left}
-    .pain-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--rl);padding:18px 20px;display:flex;gap:14px;align-items:flex-start}
-    .pn{font-family:'Geist Mono',monospace;font-size:10px;color:var(--or);background:rgba(255,106,26,.1);padding:3px 8px;border-radius:5px;font-weight:500;white-space:nowrap;margin-top:2px}
-    .pt{font-size:14px;color:var(--muted);line-height:1.6;font-weight:500}
-
-    .cases-sec{background:var(--bg);padding:60px 0;text-align:center;content-visibility:auto;contain-intrinsic-size:0 520px}
-    .cases-head{padding:0 24px 28px}
-    .cases-head .sec-ttl{color:var(--text)}
-
-    .cta-final{background:var(--bg);padding:80px 24px;text-align:center;border-top:1px solid var(--border);position:relative;overflow:hidden}
-    .cta-final::before{content:'';position:absolute;inset:0;background-image:radial-gradient(circle,rgba(255,255,255,.025) .5px,transparent .5px);background-size:22px 22px}
-    .cta-in{max-width:500px;margin:0 auto;position:relative;z-index:1}
-    .cta-h3{font-size:clamp(26px,4vw,44px);font-weight:700;letter-spacing:-.035em;line-height:1.1;color:var(--text);margin-bottom:12px}
-    .cta-lead{font-size:15px;color:var(--muted);margin-bottom:36px}
-    .btn-wa-cta{display:inline-flex;align-items:center;gap:12px;background:var(--wa);color:#fff;font-family:inherit;font-size:15px;font-weight:600;padding:16px 32px;border-radius:var(--r);border:none;cursor:pointer;text-decoration:none;letter-spacing:-.01em;min-height:54px;width:100%;max-width:380px;justify-content:center;box-shadow:0 12px 40px -12px rgba(37,211,102,.35);transition:opacity var(--e),transform var(--e)}
-    .btn-wa-cta:hover{opacity:.88;transform:translateY(-1px)}
-    .seals{display:flex;flex-wrap:wrap;justify-content:center;gap:16px;margin-top:22px}
-    .seal{font-family:'Geist Mono',monospace;font-size:10px;color:var(--off);text-transform:uppercase;letter-spacing:.05em;display:flex;align-items:center;gap:6px}
+    /* ── RESULTADO (uma dobra) ── */
+    #s-result{min-height:100svh;display:flex;align-items:center;justify-content:center;background:var(--bg);padding:40px 24px}
+    .res-wrap{max-width:540px;width:100%;text-align:center}
+    .res-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(255,106,26,.1);border:1px solid rgba(255,106,26,.25);border-radius:99px;padding:5px 14px;font-family:'Geist Mono',monospace;font-size:10px;color:var(--or);text-transform:uppercase;letter-spacing:.06em;margin-bottom:14px}
+    .res-h2{font-size:clamp(20px,3vw,28px);font-weight:700;letter-spacing:-.03em;line-height:1.1;color:var(--text);margin-bottom:6px}
+    .res-sub{font-size:14px;color:var(--muted);margin-bottom:18px;line-height:1.5}
+    .pain-list{display:flex;flex-direction:column;gap:8px;text-align:left;margin-bottom:20px}
+    .pain-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--r);padding:12px 16px;display:flex;gap:12px;align-items:flex-start}
+    .pn{font-family:'Geist Mono',monospace;font-size:10px;color:var(--or);background:rgba(255,106,26,.1);padding:3px 7px;border-radius:5px;font-weight:500;white-space:nowrap;margin-top:1px;flex-shrink:0}
+    .pt{font-size:13px;color:var(--muted);line-height:1.55}
+    .btn-wa-cta{display:inline-flex;align-items:center;gap:10px;background:var(--wa);color:#fff;font-family:inherit;font-size:14px;font-weight:600;padding:15px 28px;border-radius:var(--r);border:none;cursor:pointer;text-decoration:none;letter-spacing:-.01em;min-height:52px;width:100%;max-width:400px;justify-content:center;box-shadow:0 12px 40px -12px rgba(37,211,102,.4);transition:filter var(--e),transform var(--e)}
+    .btn-wa-cta:hover{filter:brightness(1.08);transform:translateY(-1px)}
+    .seals{display:flex;flex-wrap:wrap;justify-content:center;gap:12px;margin-top:14px}
+    .seal{font-family:'Geist Mono',monospace;font-size:10px;color:var(--off);text-transform:uppercase;letter-spacing:.05em;display:flex;align-items:center;gap:5px}
     .seal::before{content:'';width:4px;height:4px;border-radius:50%;background:rgba(255,255,255,.15);flex-shrink:0}
 
     /* ── RESPONSIVE ── */
@@ -378,8 +343,6 @@
       .xh{display:none}
       .vcard{flex:0 0 68vw;max-width:210px}
       .qbody,.qnav{padding-left:20px;padding-right:20px}
-      .pains-sec,.cases-sec{padding:44px 0}
-      .res-hero,.cta-final{padding:56px 20px}
       .hero-actions{flex-direction:column;align-items:stretch;max-width:340px;margin-left:auto;margin-right:auto}
       .btn-pri,.btn-wa-hero{justify-content:center;width:100%}
     }
@@ -513,64 +476,23 @@
 </main>
 
 
-<!-- ══════════ CAPTURA ══════════ -->
-<main id="s-capture" class="screen" aria-label="Seus dados">
-  <div class="cap-in">
-    <p class="cap-ey">// etapa final</p>
-    <h2 class="cap-h2">Pra onde enviamos<br>seu diagnóstico?</h2>
-    <p class="cap-lead">Preencha abaixo e veja seu resultado personalizado.</p>
-    <form id="cap-form" onsubmit="submitCap(event)" novalidate>
-      <div class="field">
-        <label for="f-name"><span>//</span> nome completo</label>
-        <input type="text" id="f-name" placeholder="João Silva" autocomplete="name" required aria-required="true" />
-        <p class="ferr" id="err-name" role="alert">Insira seu nome.</p>
-      </div>
-      <div class="field">
-        <label for="f-phone"><span>//</span> whatsapp com ddd</label>
-        <input type="tel" id="f-phone" placeholder="(34) 99999-9999" autocomplete="tel" inputmode="numeric" required aria-required="true" />
-        <p class="ferr" id="err-phone" role="alert">Insira um WhatsApp válido com DDD.</p>
-      </div>
-      <button type="submit" class="btn-sub">Ver meu diagnóstico →</button>
-    </form>
-    <p class="cap-priv">// dados protegidos · sem spam</p>
-  </div>
-</main>
-
-
 <!-- ══════════ RESULTADO ══════════ -->
 <main id="s-result" class="screen" aria-label="Resultado">
-
-  <section class="res-hero">
-    <div class="res-in">
-      <div class="res-badge"><span class="dot" aria-hidden="true"></span> // diagnóstico concluído</div>
-      <h2 class="res-h2" id="res-h2">Diagnóstico pronto.</h2>
-      <p class="res-sub">Identificamos 3 pontos críticos que estão travando o crescimento da sua empresa hoje.</p>
-    </div>
-  </section>
-
-  <section class="pains-sec" aria-label="Pontos críticos">
-    <span class="sec-num">// 01 — diagnóstico</span>
-    <h3 class="sec-ttl">Seus 3 pontos críticos</h3>
+  <div class="res-wrap">
+    <div class="res-badge"><span class="dot" aria-hidden="true"></span> // diagnóstico concluído</div>
+    <h2 class="res-h2" id="res-h2">Diagnóstico pronto.</h2>
+    <p class="res-sub">3 pontos críticos identificados no seu negócio:</p>
     <div class="pain-list" id="pain-list" role="list"></div>
-  </section>
-
-  <section class="cta-final" aria-label="Próximo passo">
-    <div class="cta-in">
-      <p class="eyebrow" style="justify-content:center;margin-bottom:20px">// próximo passo</p>
-      <h3 class="cta-h3">Quer um plano de ação<br>pra sua empresa?</h3>
-      <p class="cta-lead">Nosso time envia uma proposta personalizada no WhatsApp, sem compromisso.</p>
-      <a href="#" id="btn-wa" class="btn-wa-cta" target="_blank" rel="noopener noreferrer" onclick="trackEv('whatsapp_cta')">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-        Receber meu plano no WhatsApp
-      </a>
-      <div class="seals">
-        <span class="seal">Atendimento humano</span>
-        <span class="seal">Sem compromisso</span>
-        <span class="seal">Resposta em até 1h útil</span>
-      </div>
+    <a href="#" id="btn-wa" class="btn-wa-cta" target="_blank" rel="noopener noreferrer" onclick="trackEv('whatsapp_cta')">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+      Quero meu plano de ação no WhatsApp
+    </a>
+    <div class="seals">
+      <span class="seal">Atendimento humano</span>
+      <span class="seal">Sem compromisso</span>
+      <span class="seal">Resposta em até 1h útil</span>
     </div>
-  </section>
-
+  </div>
 </main>
 
 
@@ -624,7 +546,7 @@ const QUESTIONS = [
 ];
 
 /* ── ESTADO ── */
-const S = { ans:{}, name:'', phone:'', cur:0 };
+const S = { ans:{}, cur:0 };
 
 /* ── THUMBNAILS ── */
 function loadThumbs(trackEl) {
@@ -866,34 +788,9 @@ function pick(i, v, isM) {
 function nextQ() {
   const n = S.cur + 1;
   if (n < QUESTIONS.length) { renderQ(n); window.scrollTo({ top: 0, behavior: 'smooth' }); }
-  else { trackEv('quiz_completed'); show('s-capture'); }
+  else { trackEv('quiz_completed'); buildResult(); show('s-result'); }
 }
 function prevQ() { if (S.cur > 0) { renderQ(S.cur - 1); window.scrollTo({ top: 0, behavior: 'smooth' }); } }
-
-/* ── CAPTURA ── */
-document.getElementById('f-phone').addEventListener('input', e => {
-  let v = e.target.value.replace(/\D/g,'').slice(0,11);
-  if (v.length>6)      v = `(${v.slice(0,2)}) ${v.slice(2,7)}-${v.slice(7)}`;
-  else if (v.length>2) v = `(${v.slice(0,2)}) ${v.slice(2)}`;
-  else if (v.length>0) v = `(${v}`;
-  e.target.value = v;
-});
-
-function submitCap(e) {
-  e.preventDefault();
-  const nEl=document.getElementById('f-name'), pEl=document.getElementById('f-phone');
-  const eN=document.getElementById('err-name'), eP=document.getElementById('err-phone');
-  let ok = true;
-  if (nEl.value.trim().length < 2) { nEl.classList.add('err'); eN.classList.add('show'); ok=false; }
-  else { nEl.classList.remove('err'); eN.classList.remove('show'); }
-  const d = pEl.value.replace(/\D/g,'');
-  if (!/^[1-9]{2}9?\d{8}$/.test(d)) { pEl.classList.add('err'); eP.classList.add('show'); ok=false; }
-  else { pEl.classList.remove('err'); eP.classList.remove('show'); }
-  if (!ok) return;
-  S.name = nEl.value.trim(); S.phone = pEl.value;
-  trackEv('lead_generated');
-  buildResult(); show('s-result');
-}
 
 /* ── DIAGNÓSTICO ── */
 function getDiag() {
@@ -923,7 +820,6 @@ function getDiag() {
 }
 
 function buildResult() {
-  document.getElementById('res-h2').textContent = `Diagnóstico pronto, ${S.name.split(' ')[0]}.`;
   document.getElementById('pain-list').innerHTML = getDiag().map((t,i)=>
     `<div class="pain-card" role="listitem"><span class="pn">// 0${i+1}</span><p class="pt">${t}</p></div>`
   ).join('');
@@ -935,7 +831,6 @@ function waURL() {
   return 'https://wa.me/5534999386446?text='+encodeURIComponent(
 `Olá! Acabei de fazer o diagnóstico no site da Hadar.
 
-👤 Nome: ${S.name}
 🏢 Papel: ${a[0]||'—'}
 ⏱️ Tempo de empresa: ${a[1]||'—'}
 💰 Faturamento: ${a[2]||'—'}
